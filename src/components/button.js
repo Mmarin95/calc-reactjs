@@ -5,12 +5,14 @@ class Button extends Component {
     render() {
         const { symbol, cols, action } = this.props;
         return (
-            <button
-                className={`column-${cols}`}
-                onClick={() => action(symbol)}
-            >
-                {symbol}
-            </button>
+            <div className={`column-${cols}`}>
+                <button
+                    className="calc-button"
+                    onClick={() => action(symbol)}
+                >
+                    {symbol}
+                </button>
+            </div>
         )
     }
 

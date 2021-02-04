@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from './components/button'
+import './css/style.css'
 
 
 class App extends Component {
@@ -19,7 +20,6 @@ class App extends Component {
   }
 
   addToCurrentNumber = (symbol) => {
-    console.log(symbol)
 
     let { currentNumber, previousNumbers, nextIsReset } = this.state;
 
@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   solve = (symbol) => {
-    let { currentNumber, previousNumbers, nextIsReset } = this.state;
+    let { currentNumber, previousNumbers } = this.state;
 
     if (previousNumbers.length > 0) {
       currentNumber = eval(String(previousNumbers[previousNumbers.length - 1] + currentNumber));
@@ -95,18 +95,16 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        {previousNumbers.length > 0 ?
+        <div className="display-box">
           <div className="previous">{previousNumbers[previousNumbers.length - 1]}</div>
-          : null
-        }
-        <input className="result" type="text" value={currentNumber} onChange={this.onChange}></input>
+          <input read-only="true" className="result" type="text" value={currentNumber} onChange={this.onChange}></input>
+        </div>
         {buttons.map((button, i) => {
           return <Button key={i} symbol={button.symbol} cols={button.cols} action={(symbol) => button.action(symbol)} />
         })}
       </div>
     )
   }
-
 
 }
 
